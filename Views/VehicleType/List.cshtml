@@ -1,0 +1,16 @@
+﻿@{
+<h1>List of All Vehicle Types</h1>
+<a href="/VehicleType/Add">Add new Vehicle Type</a>
+    foreach (var VehicleType in Model)
+    {
+
+        <div>
+            <span class="hidden">@VehicleType.VehicleTypeID</span>
+
+            <a href="/VehicleType/show/@VehicleType.VehicleTypeID">@VehicleType.VehicleTypeName | </a>
+            <a href="/VehicleType/Update/@VehicleType.VehicleTypeID">Update/Edit | </a>
+            
+            <a href="/VehicleType/ConfirmDelete/@VehicleType.VehicleTypeID">Delete</a>
+        </div>
+    }
+}

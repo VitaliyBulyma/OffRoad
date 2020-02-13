@@ -1,0 +1,17 @@
+﻿@model OffRoad.Models.VehicleType
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<a href="/VehicleType/List">Back to List</a>
+
+<form action="/VehicleType/Update/@Model.VehicleTypeID" method="POST">
+
+    <span class="hidden">@Model.VehicleTypeID</span>
+    <span>Vehicle Type Name</span><input type="text" value="@Model.VehicleTypeName" id="VehicleTypeName" name="VehicleTypeName" /><br />
+
+
+    <input type="submit" value="Update Vehicle Type" /><button onclick="window.location.href = '/VehicleType/List';">Cancel</button>
+</form>

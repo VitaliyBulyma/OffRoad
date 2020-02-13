@@ -1,0 +1,39 @@
+Off-Road.ca
+Website about off-road vehicles where people can
+- Create profiles for their cars/trucks/bikes and
+- Profiles for themselfs
+- Organize Events (Meetup.com style)
+- Events calendar
+- Reserve/buy tickets for events as spectators or participants
+- Discussion board
+- Voting system on best vehicle in type
+
+Classes: 
+
+	Vehicle
+	{
+		Type: Car| Truck| Side-by-Side | ATV
+		Make: 
+		Model:
+		Year:
+		Color:
+		
+        }
+	
+	Owner
+	{
+		FName:
+		LName:
+		NickName:
+		Vehicle(s):
+		OwnerLocation:
+	
+	}
+
+	Event
+	{
+		EventName:
+		EventLocation:
+		VehiclesAllowed:		
+	
+	}
