@@ -1,0 +1,35 @@
+﻿@model  List<OffRoad.Models.VehicleType>
+
+
+-----------------------------------------------------------------
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<a href="/Vehicle/List">Back to List of all Vehicles</a>
+<form method="post" action="/Vehicle/Add">
+    <div>
+        <span>Vehicle Types:</span></br>
+        <select id="VehicleTypeID" type="text" name="VehicleTypeID">
+            @{
+
+                foreach (var VehicleType in Model)
+                {
+                    <option value="@VehicleType.VehicleTypeID">@VehicleType.VehicleTypeName</option>
+
+                }
+            }
+        </select>
+
+
+    </div>
+    <div><span>Make: </span></br><input id="VehicleMake" type="text" name="VehicleMake" /></div>
+    <div><span>Model: </span></br><input id="VehicleModel" type="text" name="VehicleModel" /></div>
+    <div><span>Year: </span></br><input id="VehicleYear" type="text" name="VehicleYear" /></div>
+    <div><span>Color: </span></br><input id="VehicleColor" type="text" name="VehicleColor" /></div>
+    <div><span>Engine Size: </span></br><input id="VehicleEngineSize" type="text" name="VehicleEngineSize" /></div>
+    <div><input type="submit" value="Add New Vehicle"></div>
+</form>
+
+

@@ -1,0 +1,33 @@
+﻿@{
+
+    <h1>List of All Vehicle Owners</h1>
+    <form action="/Owner/List" method="GET">
+        <input type="text" name="ownersearchkey" id="ownersearchkey" />
+        <input type="submit" value="Search" /><button> <a href="/Owner/List">Reset Search</a></button>
+    </form>
+    <a href="/Owner/Add">Add new Owner</a>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Screen Name</th>
+                <th>Location</th>
+                <th colspan="2" style="text-align:center;">Action</th>
+
+            </tr>
+        </thead>
+        @foreach (var Owner in Model)
+        {
+            <tr>
+                <td><a href="/Owner/show/@Owner.OwnerID">@Owner.OwnerFname  </a></td>
+                <td><a href="/Owner/show/@Owner.OwnerID">@Owner.OwnerLname  </a></td>
+                <td>@Owner.OwnerNickName</td>
+                <td>@Owner.OwnerLocation</td>
+                <td><a href="/Owner/Update/@Owner.OwnerID">Update/Edit </a></td>
+                <td><a href="/Owner/ConfirmDelete/@Owner.OwnerID">Delete</a></td>
+
+            </tr>
+        }
+    </table>
+}

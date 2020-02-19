@@ -1,0 +1,35 @@
+﻿@model OffRoad.Models.ViewModels.UpdateVehicle
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<a href="/Vehicle/List">Back to List</a>
+
+<form action="/Vehicle/Update/@Model.vehicle.VehicleID" method="POST">
+    <span>Vehicle Types: </span></br><span>
+
+        <select id="VehicleTypeID" name="VehicleTypeID">
+            @{
+                foreach (var VehicleTypes in Model.vehicletype)
+                {
+                    var selected = "";
+
+                    if (VehicleTypes.VehicleTypeID == Model.vehicle.VehicleTypeID)
+                    {
+                        selected = "selected";
+                    }
+                    <option value="@VehicleTypes.VehicleTypeID" @selected>@VehicleTypes.VehicleTypeName</option>
+                }
+            }
+        </select>
+    </span></br>
+    <span class="hidden">@Model.vehicle.VehicleID</span>
+    <span>Make</span></br><input type="text" value="@Model.vehicle.VehicleMake" id="VehicleMake" name="VehicleMake" /><br />
+    <span>Model</span></br><input type="text" value="@Model.vehicle.VehicleModel" id="VehicleModel" name="VehicleModel" /><br />
+    <span>Year</span></br><input type="text" value="@Model.vehicle.VehicleYear" id="VehicleYear" name="VehicleYear" /><br />
+    <span>Color</span></br><input type="text" value="@Model.vehicle.VehicleColor" id="VehicleColor" name="VehicleColor" /><br />
+    <span>Engine Size</span></br><input type="text" value="@Model.vehicle.VehicleEngineSize" id="VehicleEngineSize" name="VehicleEngineSize" /><br />
+    <input type="submit" value="Update Vehicle Info" /><button onclick="window.location.href = '/Vehicle/List';">Cancel</button>
+</form>

@@ -23,6 +23,6 @@ namespace OffRoad.Data
 
         public System.Data.Entity.DbSet<OffRoad.Models.VehicleType> VehicleTypes { get; set; }
      
-        System.Data.Entity.DbSet<OffRoad.Models.Owner> Owners { get; set; }
+        public System.Data.Entity.DbSet<OffRoad.Models.Owner> Owners { get; set; }
     }
 }

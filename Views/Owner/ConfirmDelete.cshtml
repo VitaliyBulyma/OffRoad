@@ -1,0 +1,12 @@
+﻿<!-@Model OffRoad.Models.Owner-->
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure you want to Delete?</h2>
+
+<div><span>Owner First Name: </span> @Model.OwnerFname </div>
+<div><span>Owner Last Name: </span> @Model.OwnerLname </div>
+
+<a href="/Owner/Delete/@Model.OwnerID">Delete</a>
+<button onclick="window.location.href = '/Owner/List';">Cancel</button>

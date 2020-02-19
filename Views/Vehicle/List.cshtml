@@ -1,0 +1,43 @@
+﻿@{
+    <h1>List of All Vehicle </h1>
+    <a href="/Vehicle/Add">Add new Vehicle</a>
+    <form action="/Vehicle/List" method="GET">
+        <input type="text" name="vehiclesearchkey" id="vehiclesearchkey" />
+        <input type="submit" value="Search" /><button> <a href="/Vehicle/list">Reset Search</a></button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Vehicle ID</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Year</th>
+                <th>Color</th>
+                <th>Engine Size</th>
+                <th colspan="2" style="text-align:center;">Action</th>
+
+            </tr>
+        </thead>
+        @foreach (var Vehicle in Model)
+        {
+
+            <tr>
+
+
+                <td><a href="/Vehicle/show/@Vehicle.VehicleID">@Vehicle.VehicleID  </a></td>
+
+                <td>@Vehicle.VehicleMake </td>
+
+                <td>@Vehicle.VehicleModel </td>
+                <td>@Vehicle.VehicleYear  </td>
+                <td>@Vehicle.VehicleColor </td>
+                <td>@Vehicle.VehicleEngineSize CC </td>
+
+                <td><a href="/Vehicle/Update/@Vehicle.VehicleID">Update/Edit </a></td>
+
+                <td><a href="/Vehicle/ConfirmDelete/@Vehicle.VehicleID">Delete</a></td>
+            </tr>
+        }
+    </table>
+
+}

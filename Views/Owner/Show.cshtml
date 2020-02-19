@@ -1,0 +1,61 @@
+﻿@model OffRoad.Models.ViewModels.ShowOwner
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>@Model.owner.OwnerNickName</h2>
+<a href="/Owner/List">Back to List</a></br>
+
+<div style="//border: 1px solid black;
+             float:left;
+             width:60%;">
+
+    <img class="myimage" src="/images/icons8-person-64.png" />
+    <div><span>First Name: </span>@Model.owner.OwnerFname</div>
+    <div><span>Last Name: </span>@Model.owner.OwnerLname</div>
+
+    <div><span>Location: </span>@Model.owner.OwnerLocation</div>
+</div>
+
+
+    <div style="//border: 1px solid black;
+             float:right;
+             width: 30%;">
+        <h3 class="standsout" style="background-color:lightblue;">Vehicles Owned:</h3>
+        @{
+
+            foreach (var vehicle in @Model.vehicles)
+            {
+                <div class="lineitem">
+                    <a href="/Vehicle/Show/@vehicle.VehicleID">@vehicle.VehicleMake @vehicle.VehicleModel</a>
+                    @{
+
+                    }
+                    <a href="/Owner/DetachVehicle/@Model.owner.OwnerID?VehicleID=@vehicle.VehicleID">
+                        Remove Vehicle
+                    </a>
+                </div>
+            }
+
+        }
+        <form method="post" action="/Owner/AttachVehicle/@Model.owner.OwnerID">
+            <select name="VehicleID" id="VehicleID">
+                @{
+
+
+                    foreach (var vehicle in Model.all_vehicles)
+                    {
+                        <option value="@vehicle.VehicleID">
+                            @vehicle.VehicleMake @vehicle.VehicleModel (@vehicle.VehicleType.VehicleTypeName)
+                        </option>
+                    }
+                }
+            </select>
+            <input type="submit" value="Add Vehicle" />
+        </form>
+
+    </div>
+    <div style="clear:both;"></div>
+
+

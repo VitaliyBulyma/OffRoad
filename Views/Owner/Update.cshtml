@@ -1,0 +1,19 @@
+﻿@model OffRoad.Models.Owner
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+<a href="/Owner/List">Back to List</a>
+
+<form action="/Owner/Update/@Model.OwnerID" method="POST">
+
+    <span class="hidden">@Model.OwnerID</span></br>
+    <span>First Name</span></br><input type="text" value="@Model.OwnerFname" id="OwnerFname" name="OwnerFname" /><br />
+    <span>Last Name</span></br><input type="text" value="@Model.OwnerLname" id="OwnerLname" name="OwnerLname" /><br />
+    <span>Screen Name</span></br><input type="text" value="@Model.OwnerNickName" id="OwnerNickName" name="OwnerNickName" /><br />
+    <span>Location</span></br><input type="text" value="@Model.OwnerLocation" id="OwnerLocation" name="OwnerLocation" /><br />
+
+    <input type="submit" value="Update Owner Info" /><button onclick="window.location.href = '/Owner/List';">Cancel</button>
+</form>

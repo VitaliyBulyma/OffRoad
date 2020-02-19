@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - OFF-ROAD.CA</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="/content/Site.css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,13 +17,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("OFF-ROAD.CA", "List", "Vehicle", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <img id="logo" src="~/images/logo.jpg"/>
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li><a href="/Vehicle/List">Vehicles</a></li>
+                    <li><a href="/Owner/List"> Owners</a></li>
+                    <li><a href="https://www.facebook.com/crawlfest/">Races</a></li>
+                    <li><a href="https://www.facebook.com/pg/crawlfest/posts/?ref=page_internal"> Blog</a></li>
+                    <li><a href="https://www.facebook.com/pg/crawlfest/events/?ref=page_internal"> Events Calendar</a></li>
+
+
                 </ul>
             </div>
         </div>
@@ -31,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Vitaliy Bulyma Code Referenced from PetGrooming by Christine Bittle</p>
         </footer>
     </div>
 

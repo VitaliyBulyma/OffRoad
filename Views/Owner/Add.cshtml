@@ -1,0 +1,15 @@
+﻿
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<a href="/Owner/List">Back to List of all Owners</a>
+<form method="post" action="/Owner/Add">
+    <div><span>First Name: </span></br><input id="OwnerFname" type="text" name="OwnerFname" /></div>
+    <div><span>Last Name: </span></br><input id="OwnerLname" type="text" name="OwnerLname" /></div>
+    <div><span>Screen Name: </span></br><input id="OwnerNickName" type="text" name="OwnerNickName" /></div>
+    <div><span>Location: </span></br><input id="OwnerLocation" type="text" name="OwnerLocation" /></div>
+    <div><input type="submit" value="Add New Owner"></div>
+</form>

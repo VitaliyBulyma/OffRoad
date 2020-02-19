@@ -78,3 +78,5 @@ C:\Users\vital\source\repos\OffRoad\obj\Debug\OffRoad.dll
 C:\Users\vital\source\repos\OffRoad\obj\Debug\OffRoad.pdb
 C:\Users\vital\source\repos\OffRoad\obj\Debug\OffRoad.Migrations.first.resources
 C:\Users\vital\source\repos\OffRoad\obj\Debug\OffRoad.csproj.GenerateResource.cache
+C:\Users\vital\source\repos\OffRoad\obj\Debug\OffRoad.Migrations.VehicleType.resources
+C:\Users\vital\source\repos\OffRoad\obj\Debug\OffRoad.csprojAssemblyReference.cache

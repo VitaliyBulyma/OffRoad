@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using OffRoad.Models.ViewModels;
 
 namespace OffRoad.Models
 {

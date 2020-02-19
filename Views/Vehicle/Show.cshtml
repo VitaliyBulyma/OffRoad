@@ -1,0 +1,45 @@
+﻿@model OffRoad.Models.ViewModels.ShowVehicle
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>@Model.vehicle.VehicleMake  @Model.vehicle.VehicleModel</h2>
+<a href="/Vehicle/List">Back to List</a></br>
+
+
+
+<div style="//border: 1px solid black;
+             float:left;
+             width:60%;">
+    <img class="myimage" src="/images/logo.jpg" />
+    <!--<div><span>ID: </span>@Model.vehicle.VehicleID</div>-->
+    <div><span>Make: </span>@Model.vehicle.VehicleMake</div>
+    <div><span>Model: </span>@Model.vehicle.VehicleModel</div>
+    <div><span>Year: </span>@Model.vehicle.VehicleYear</div>
+    <div><span>Color: </span>@Model.vehicle.VehicleColor</div>
+    <div><span>Engine Size: </span>@Model.vehicle.VehicleEngineSize</div>
+</div>
+<div  style="//border: 1px solid black;
+             float:right;
+             width: 30%;">
+    <h3 class="standsout" style="background-color:lightblue;"  >Owners:</h3>
+    @{
+
+        foreach (var owner in @Model.owners)
+        {
+            <div class="lineitem">
+                <a href="/Owner/Show/@owner.OwnerID">@owner.OwnerLname, @owner.OwnerFname</a>
+            </div>
+        }
+
+
+    }
+    <div>
+        <h3 class="standsout" style="background-color:lightblue;">This Vehicle Raced In: </h3>
+        <ul>
+            <li>CrawlFest 2019</li>
+        </ul>
+    </div>
+</div>
+<div style="clear:both;"></div>

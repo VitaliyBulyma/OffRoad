@@ -20,7 +20,7 @@ namespace OffRoad.Models
 
         public int VehicleTypeID { get; set; }
         [ForeignKey("VehicleTypeID")]
-        public virtual Vehicle Vehicles { get; set; }
+        public virtual VehicleType VehicleType { get; set; }
 
         public ICollection<Owner> Owners { get; set; }
     }

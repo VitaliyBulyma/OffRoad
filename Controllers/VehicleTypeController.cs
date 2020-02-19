@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-//required for SqlParameter class
 using System.Data.SqlClient;
 using System.Data.Entity;
 using System.Linq;
@@ -120,13 +119,6 @@ namespace OffRoad.Controllers
 
             return View(selectedvehicletype);
         }
-        //
-        // Show
-        // Add
-        // [HttpPost] Add
-        // Update
-        // [HttpPost] Update
-        // (optional) delete
-        // [HttpPost] Delete
+      
     }
 }

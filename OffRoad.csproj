@@ -128,6 +128,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OwnerController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Controllers\VehicleTypeController.cs" />
     <Compile Include="Data\OffRoadContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -137,10 +139,17 @@
     <Compile Include="Migrations\202002130617406_first.designer.cs">
       <DependentUpon>202002130617406_first.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002192118054_VehicleType.cs" />
+    <Compile Include="Migrations\202002192118054_VehicleType.designer.cs">
+      <DependentUpon>202002192118054_VehicleType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleType.cs" />
+    <Compile Include="Models\ViewModels\ShowOwner.cs" />
+    <Compile Include="Models\ViewModels\ShowVehicle.cs" />
+    <Compile Include="Models\ViewModels\UpdateVehicle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +161,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1.jpg" />
+    <Content Include="images\2.JPG" />
+    <Content Include="images\icons8-person-64.png" />
+    <Content Include="images\logo.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -184,6 +197,16 @@
     <Content Include="Views\VehicleType\List.cshtml" />
     <Content Include="Views\VehicleType\Show.cshtml" />
     <Content Include="Views\VehicleType\Update.cshtml" />
+    <Content Include="Views\Owner\Add.cshtml" />
+    <Content Include="Views\Owner\List.cshtml" />
+    <Content Include="Views\Owner\Show.cshtml" />
+    <Content Include="Views\Owner\Update.cshtml" />
+    <Content Include="Views\Owner\ConfirmDelete.cshtml" />
+    <Content Include="Views\Vehicle\Show.cshtml" />
+    <Content Include="Views\Vehicle\List.cshtml" />
+    <Content Include="Views\Vehicle\Update.cshtml" />
+    <Content Include="Views\Vehicle\Add.cshtml" />
+    <Content Include="Views\Vehicle\ConfirmDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -204,6 +227,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002130617406_first.resx">
       <DependentUpon>202002130617406_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002192118054_VehicleType.resx">
+      <DependentUpon>202002192118054_VehicleType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

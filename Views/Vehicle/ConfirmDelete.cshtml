@@ -1,0 +1,12 @@
+﻿<!-@Model OffRoad.Models.Vehicle-->
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Are you sure you want to Delete?</h2>
+
+<div><span>Make: </span> @Model.VehicleMake </div>
+<div><span>Model: </span> @Model.VehicleModel </div>
+
+<a href="/Vehicle/Delete/@Model.VehicleID">Delete</a>
+<button onclick="window.location.href = '/Vehicle/List';">Cancel</button>
