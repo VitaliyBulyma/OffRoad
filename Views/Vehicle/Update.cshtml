@@ -9,7 +9,7 @@
 
 <form action="/Vehicle/Update/@Model.vehicle.VehicleID" method="POST" enctype="multipart/form-data">
     <span>Vehicle Types: </span></br><span>
-    <div style="border: 1px solid black;" class="inpfield"><span>Image: </span><input type="file" name="VehicleFoto" id="VehicleFoto" /></div>
+    <div style="Noborder: 1px solid black;" ><span>Image: </span><input type="file" name="VehicleFoto" id="VehicleFoto" /></div>
     <select id="VehicleTypeID" name="VehicleTypeID">
         @{
             foreach (var VehicleTypes in Model.vehicletype)

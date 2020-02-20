@@ -32,6 +32,15 @@ namespace OffRoad.Controllers
                 query= query+ "where VehicleMake like '%"+vehiclesearchkey+ "%' or VehicleModel like '%" + vehiclesearchkey + "%'  ";
             }
             List<Vehicle> vehicles = db.Vehicles.SqlQuery(query).ToList();
+
+            //Debug.WriteLine("vehicle count is " + vehicles.Count);
+
+            // I want to send a message if search returned nothing
+            //if (vehicles.Count == 0)
+            //{
+            //    string emptyset = "Your search returned no results";
+            //}
+
             return View(vehicles);
 
         }
@@ -72,7 +81,7 @@ namespace OffRoad.Controllers
            
             string query = "insert into Vehicles (VehicleMake,VehicleModel, VehicleYear, VehicleColor, VehicleEngineSize,  VehicleTypeID) values (@VehicleMake,@VehicleModel, @VehicleYear, @VehicleColor, @VehicleEngineSize,  @VehicleTypeID)";
             SqlParameter[] sqlparams = new SqlParameter[6]; 
-            //each piece of information is a key and value pair
+            
             sqlparams[0] = new SqlParameter("@VehicleMake", VehicleMake);
             sqlparams[1] = new SqlParameter("@VehicleModel", VehicleModel);
             sqlparams[2] = new SqlParameter("@VehicleYear", VehicleYear);

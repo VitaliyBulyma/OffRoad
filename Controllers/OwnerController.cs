@@ -45,7 +45,7 @@ namespace OffRoad.Controllers
 
         public ActionResult AttachVehicle(int id, int VehicleID)
         {
-            Debug.WriteLine("owner id is" + id + " and vehicleid is " + VehicleID);
+            //Debug.WriteLine("owner id is" + id + " and vehicleid is " + VehicleID);
 
             string check_query = "select * from Vehicles inner join VehicleOwners on VehicleOwners.Vehicle_VehicleID = Vehicles.VehicleID where Vehicle_VehicleID=@VehicleID and Owner_OwnerID=@id";
             SqlParameter[] check_params = new SqlParameter[2];

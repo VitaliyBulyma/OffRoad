@@ -1,16 +1,36 @@
 ﻿@{
-<h1>List of All Vehicle Types</h1>
-<a href="/VehicleType/Add">Add new Vehicle Type</a>
-    foreach (var VehicleType in Model)
-    {
+    <h1>List of All Vehicle Types</h1>
+    <a href="/VehicleType/Add">Add new Vehicle Type</a>
 
-        <div>
-            <span class="hidden">@VehicleType.VehicleTypeID</span>
 
-            <a href="/VehicleType/show/@VehicleType.VehicleTypeID">@VehicleType.VehicleTypeName | </a>
-            <a href="/VehicleType/Update/@VehicleType.VehicleTypeID">Update/Edit | </a>
-            
-            <a href="/VehicleType/ConfirmDelete/@VehicleType.VehicleTypeID">Delete</a>
-        </div>
-    }
+    <table border="0">
+        <thead>
+            <tr>
+                <th>Vehicle Type ID</th>
+                <th>Vehicle Type Name </th>                
+                
+                <th colspan="2" style="text-align:center;">Action</th>
+
+            </tr>
+        </thead>
+        @foreach (var VehicleType in Model)
+        {
+
+            <tr>
+
+
+                <td><a href="/VehicleType/show/@VehicleType.VehicleTypeID">@VehicleType.VehicleTypeID  </a></td>
+               
+                <td>@VehicleType.VehicleTypeName </td>
+
+                
+
+                <td><a href="/VehicleType/Update/@VehicleType.VehicleTypeID">Update/Edit </a></td>
+
+                <td><a href="/VehicleType/ConfirmDelete/@VehicleType.VehicleTypeID">Delete</a></td>
+            </tr>
+        }
+    </table>
+
+          
 }
