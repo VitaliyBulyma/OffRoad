@@ -143,6 +143,10 @@
     <Compile Include="Migrations\202002192118054_VehicleType.designer.cs">
       <DependentUpon>202002192118054_VehicleType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002200008161_picextension.cs" />
+    <Compile Include="Migrations\202002200008161_picextension.designer.cs">
+      <DependentUpon>202002200008161_picextension.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Vehicle.cs" />
@@ -210,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Vehicles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -230,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002192118054_VehicleType.resx">
       <DependentUpon>202002192118054_VehicleType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002200008161_picextension.resx">
+      <DependentUpon>202002200008161_picextension.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

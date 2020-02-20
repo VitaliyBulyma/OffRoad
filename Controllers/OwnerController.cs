@@ -57,7 +57,7 @@ namespace OffRoad.Controllers
             {
 
 
-                //first id above is the ownerid, then the petid
+                
                 string query = "insert into VehicleOwners (Vehicle_VehicleID, Owner_OwnerID) values (@VehicleID, @id)";
                 SqlParameter[] sqlparams = new SqlParameter[2];
                 sqlparams[0] = new SqlParameter("@id", id);

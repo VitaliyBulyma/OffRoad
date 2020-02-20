@@ -7,24 +7,24 @@
 
 <a href="/Vehicle/List">Back to List</a>
 
-<form action="/Vehicle/Update/@Model.vehicle.VehicleID" method="POST">
+<form action="/Vehicle/Update/@Model.vehicle.VehicleID" method="POST" enctype="multipart/form-data">
     <span>Vehicle Types: </span></br><span>
+    <div style="border: 1px solid black;" class="inpfield"><span>Image: </span><input type="file" name="VehicleFoto" id="VehicleFoto" /></div>
+    <select id="VehicleTypeID" name="VehicleTypeID">
+        @{
+            foreach (var VehicleTypes in Model.vehicletype)
+            {
+                var selected = "";
 
-        <select id="VehicleTypeID" name="VehicleTypeID">
-            @{
-                foreach (var VehicleTypes in Model.vehicletype)
+                if (VehicleTypes.VehicleTypeID == Model.vehicle.VehicleTypeID)
                 {
-                    var selected = "";
-
-                    if (VehicleTypes.VehicleTypeID == Model.vehicle.VehicleTypeID)
-                    {
-                        selected = "selected";
-                    }
-                    <option value="@VehicleTypes.VehicleTypeID" @selected>@VehicleTypes.VehicleTypeName</option>
+                    selected = "selected";
                 }
+                <option value="@VehicleTypes.VehicleTypeID" @selected>@VehicleTypes.VehicleTypeName</option>
             }
-        </select>
-    </span></br>
+        }
+    </select>
+</span></br>
     <span class="hidden">@Model.vehicle.VehicleID</span>
     <span>Make</span></br><input type="text" value="@Model.vehicle.VehicleMake" id="VehicleMake" name="VehicleMake" /><br />
     <span>Model</span></br><input type="text" value="@Model.vehicle.VehicleModel" id="VehicleModel" name="VehicleModel" /><br />

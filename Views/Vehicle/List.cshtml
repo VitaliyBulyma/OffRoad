@@ -5,10 +5,11 @@
         <input type="text" name="vehiclesearchkey" id="vehiclesearchkey" />
         <input type="submit" value="Search" /><button> <a href="/Vehicle/list">Reset Search</a></button>
     </form>
-    <table>
+    <table border="0">
         <thead>
             <tr>
-                <th>Vehicle ID</th>
+                <th>Vehicle</th>
+                <th>Photo </th>
                 <th>Make</th>
                 <th>Model</th>
                 <th>Year</th>
@@ -21,22 +22,31 @@
         @foreach (var Vehicle in Model)
         {
 
-            <tr>
+    <tr>
 
 
-                <td><a href="/Vehicle/show/@Vehicle.VehicleID">@Vehicle.VehicleID  </a></td>
+        <td><a href="/Vehicle/show/@Vehicle.VehicleID">@Vehicle.VehicleID  </a></td>
+        <td>
 
-                <td>@Vehicle.VehicleMake </td>
+            @{
+                if (Vehicle.HasPic == 1)
+                {
+                        <a href="/Vehicle/show/@Vehicle.VehicleID"><img class="rotateimg90" style="width:120px;height:100px" src="../../Content/Vehicles/@(Vehicle.VehicleID).@(Vehicle.PicExtension)" alt="Image of @Vehicle.VehicleMake @Vehicle.VehicleModel" /></a>
+                }
+            }
 
-                <td>@Vehicle.VehicleModel </td>
-                <td>@Vehicle.VehicleYear  </td>
-                <td>@Vehicle.VehicleColor </td>
-                <td>@Vehicle.VehicleEngineSize CC </td>
+        </td>
+        <td>@Vehicle.VehicleMake </td>
 
-                <td><a href="/Vehicle/Update/@Vehicle.VehicleID">Update/Edit </a></td>
+        <td>@Vehicle.VehicleModel </td>
+        <td>@Vehicle.VehicleYear  </td>
+        <td>@Vehicle.VehicleColor </td>
+        <td>@Vehicle.VehicleEngineSize CC </td>
 
-                <td><a href="/Vehicle/ConfirmDelete/@Vehicle.VehicleID">Delete</a></td>
-            </tr>
+        <td><a href="/Vehicle/Update/@Vehicle.VehicleID">Update/Edit </a></td>
+
+        <td><a href="/Vehicle/ConfirmDelete/@Vehicle.VehicleID">Delete</a></td>
+    </tr>
         }
     </table>
 

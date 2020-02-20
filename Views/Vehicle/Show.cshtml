@@ -6,19 +6,30 @@
 
 <h2>@Model.vehicle.VehicleMake  @Model.vehicle.VehicleModel</h2>
 <a href="/Vehicle/List">Back to List</a></br>
+<div style="clear:both;margin:10px 0;"></div>
 
 
 
 <div style="//border: 1px solid black;
              float:left;
              width:60%;">
-    <img class="myimage" src="/images/logo.jpg" />
+    <div style="width:30%;height:50%;">
+        @{
+            if (Model.vehicle.HasPic == 1)
+            {
+                <img class="rotateimg90" style="width:100%;height:auto;" src="../../Content/Vehicles/@(Model.vehicle.VehicleID).@(Model.vehicle.PicExtension)" alt="Image of @Model.vehicle.VehicleMake @Model.vehicle.VehicleModel" />
+            }
+        }
+    </div>
+
+
+    <div style="clear:both;margin:10px 0;"></div>
     <!--<div><span>ID: </span>@Model.vehicle.VehicleID</div>-->
     <div><span>Make: </span>@Model.vehicle.VehicleMake</div>
     <div><span>Model: </span>@Model.vehicle.VehicleModel</div>
     <div><span>Year: </span>@Model.vehicle.VehicleYear</div>
     <div><span>Color: </span>@Model.vehicle.VehicleColor</div>
-    <div><span>Engine Size: </span>@Model.vehicle.VehicleEngineSize</div>
+    <div><span>Engine Size: </span>@Model.vehicle.VehicleEngineSize CC</div>
 </div>
 <div  style="//border: 1px solid black;
              float:right;

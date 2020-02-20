@@ -9,8 +9,9 @@ using System.Web;
 using System.Web.Mvc;
 using OffRoad.Data;
 using OffRoad.Models;
-using System.Diagnostics;
 using OffRoad.Models.ViewModels;
+using System.Diagnostics;
+using System.IO;
 
 namespace OffRoad.Controllers
 {
@@ -109,7 +110,7 @@ namespace OffRoad.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(int id, string VehicleMake, string VehicleModel, int VehicleYear, string VehicleColor, decimal VehicleEngineSize, int VehicleTypeID)
+        public ActionResult Update(int id, string VehicleMake, string VehicleModel, int VehicleYear, string VehicleColor, decimal VehicleEngineSize, int VehicleTypeID, HttpPostedFileBase VehicleFoto)
         {
             Debug.WriteLine("I am trying to display VehicleID:" + id + 
                 "VehicleMake: "  + VehicleMake+
@@ -118,13 +119,57 @@ namespace OffRoad.Controllers
                 "VehicleColor: " + VehicleColor +
                 "VehicleEngineSize: " + VehicleEngineSize +
                 "VehicleTypeID: " + VehicleTypeID 
-
-
-
                 );
-            string queryUpdate = "update Vehicles SET VehicleMake=@VehicleMake , VehicleTypeID=@VehicleTypeID, VehicleModel=@VehicleModel , VehicleYear=@VehicleYear, VehicleColor=@VehicleColor, VehicleEngineSize=@VehicleEngineSize where VehicleID=@id";
 
-            SqlParameter[] sqlparams = new SqlParameter[7];
+            int haspic = 0;
+            string vehiclepicextension = "";
+
+            
+            if (VehicleFoto != null)
+            {
+                //Debug.WriteLine("Something identified...");
+                //checking to see if the file size is greater than 0 (bytes)
+                if (VehicleFoto.ContentLength > 0)
+                {
+                    //Debug.WriteLine("Successfully Identified Image");
+                    //file extensioncheck taken from https://www.c-sharpcorner.com/article/file-upload-extension-validation-in-asp-net-mvc-and-javascript/
+                    var valtypes = new[] { "jpeg", "jpg", "png", "gif", "JPG" };
+                    var extension = Path.GetExtension(VehicleFoto.FileName).Substring(1);
+
+                    if (valtypes.Contains(extension))
+                    {
+                        try
+                        {
+                            //file name is the id of the image
+                            string fn = id + "." + extension;
+
+                            //get a direct file path to ~/Content/Vehicles/{id}.{extension}
+                            string path = Path.Combine(Server.MapPath("~/Content/Vehicles/"), fn);
+
+                            //save the file
+                            VehicleFoto.SaveAs(path);
+                            //if these are all successful then we can set these fields
+                            haspic = 1;
+                            vehiclepicextension = extension;
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Vehicle Image was not saved successfully.");
+                            Debug.WriteLine("Exception:" + ex);
+                        }
+
+
+
+                    }
+                }
+            }
+
+            
+
+        string queryUpdate = "update Vehicles SET VehicleMake=@VehicleMake , VehicleTypeID=@VehicleTypeID, VehicleModel=@VehicleModel , VehicleYear=@VehicleYear, VehicleColor=@VehicleColor, VehicleEngineSize=@VehicleEngineSize,HasPic=@haspic, PicExtension=@vehiclepicextension where VehicleID=@id";
+
+            SqlParameter[] sqlparams = new SqlParameter[9];
 
             sqlparams[0] = new SqlParameter("@VehicleMake", VehicleMake);
             sqlparams[1] = new SqlParameter("@VehicleModel", VehicleModel);
@@ -133,8 +178,10 @@ namespace OffRoad.Controllers
             sqlparams[4] = new SqlParameter("@Vehiclecolor", VehicleColor);
             sqlparams[5] = new SqlParameter("@VehicleEngineSize", VehicleEngineSize);
             sqlparams[6] = new SqlParameter("@VehicleTypeID", VehicleTypeID);
+            sqlparams[7] = new SqlParameter("@HasPic", haspic);
+            sqlparams[8] = new SqlParameter("@vehiclepicextension", vehiclepicextension);
 
-            db.Database.ExecuteSqlCommand(queryUpdate, sqlparams);
+        db.Database.ExecuteSqlCommand(queryUpdate, sqlparams);
 
             return RedirectToAction("List");
         }
