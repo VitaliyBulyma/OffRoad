@@ -146,7 +146,7 @@ namespace OffRoad.Controllers
                 {
                     //Debug.WriteLine("Successfully Identified Image");
                     //file extensioncheck taken from https://www.c-sharpcorner.com/article/file-upload-extension-validation-in-asp-net-mvc-and-javascript/
-                    var valtypes = new[] { "jpeg", "jpg", "png", "gif", "JPG" };
+                    var valtypes = new[] { "jpeg", "jpg", "png", "gif", "JPG","MP4" };
                     var extension = Path.GetExtension(VehicleFoto.FileName).Substring(1);
 
                     if (valtypes.Contains(extension))
