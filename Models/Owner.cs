@@ -17,7 +17,7 @@ namespace OffRoad.Models
         public string OwnerNickName { get; set; }
         public string OwnerLocation { get; set; }
 
-        //Represents the "Many-to- Many" relationship to Vehicles
+        //Representing the "Many Vehicles"  in (Many Vehicles to Many Owners)s
         public ICollection<Vehicle> Vehicles { get; set; }
     }
 }

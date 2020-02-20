@@ -17,12 +17,14 @@ namespace OffRoad.Models
         public int VehicleYear { get; set; }
         public string VehicleColor { get; set; }
         public decimal VehicleEngineSize { get; set; }
-
+        //reference to FK from Vehicle Type table
         public int VehicleTypeID { get; set; }
         [ForeignKey("VehicleTypeID")]
         public virtual VehicleType VehicleType { get; set; }
         public int HasPic { get; set; }
         public string PicExtension { get; set; }
+
+        //Representing the "Many Owners"  in (Many Vehicles to Many Owners)
         public ICollection<Owner> Owners { get; set; }
     }
 }
