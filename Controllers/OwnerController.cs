@@ -30,7 +30,8 @@ namespace OffRoad.Controllers
         {
             string query = "Select * from Owners ";
 
-            //if search is entered string query will be modified before passing it into list query
+            //if search is entered -  string query will be modified before passing it into list query
+           
             if (ownersearchkey != "")
             {
                 query = query + "where OwnerFname like '%" + ownersearchkey + "%' or OwnerLname like '%" + ownersearchkey + "%' or OwnerNickName like '%" + ownersearchkey + "%'  ";
@@ -47,6 +48,8 @@ namespace OffRoad.Controllers
         {
             //Debug.WriteLine("owner id is" + id + " and vehicleid is " + VehicleID);
 
+            // checks if a record in a bridging table connecting owners and vehicles in exists
+
             string check_query = "select * from Vehicles inner join VehicleOwners on VehicleOwners.Vehicle_VehicleID = Vehicles.VehicleID where Vehicle_VehicleID=@VehicleID and Owner_OwnerID=@id";
             SqlParameter[] check_params = new SqlParameter[2];
             check_params[0] = new SqlParameter("@id", id);
@@ -55,9 +58,7 @@ namespace OffRoad.Controllers
             
             if (vehicles.Count <= 0)
             {
-
-
-                
+                 // if id does not exist, it inserts the values                               
                 string query = "insert into VehicleOwners (Vehicle_VehicleID, Owner_OwnerID) values (@VehicleID, @id)";
                 SqlParameter[] sqlparams = new SqlParameter[2];
                 sqlparams[0] = new SqlParameter("@id", id);
@@ -77,8 +78,8 @@ namespace OffRoad.Controllers
         public ActionResult DetachVehicle(int id, int VehicleID)
         {
            
-            Debug.WriteLine("owner id is" + id + " and vehicleid is " + VehicleID);
-
+            //Debug.WriteLine("owner id is" + id + " and vehicleid is " + VehicleID);
+            //removes a record form the table, removing the association of vehicle and owner
             string query = "delete from VehicleOwners where Vehicle_VehicleID=@VehicleID and Owner_OwnerID=@id";
             SqlParameter[] sqlparams = new SqlParameter[2];
             sqlparams[0] = new SqlParameter("@VehicleID", VehicleID);
@@ -104,7 +105,7 @@ namespace OffRoad.Controllers
             //                "Value of OwnerLname " + OwnerLname +
             //                "Value of OwnerNickName " + OwnerNickName +
             //               "Value of OwnerLocation " + OwnerLocation);
-
+            //adds owner to a database
             string query = "insert into Owners (OwnerFname, OwnerLname, OwnerNickName, OwnerLocation) values (@OwnerFname, @OwnerLname, @OwnerNickName, @OwnerLocation)";
             SqlParameter[] sqlparams = new SqlParameter[4];
 
@@ -119,7 +120,7 @@ namespace OffRoad.Controllers
 
         public ActionResult Update(int id)
         {
-
+            // populates the form with the existing owner information from database
             Owner selectedowner = db.Owners.SqlQuery("select * from Owners where OwnerID = @id", new SqlParameter("@id", id)).FirstOrDefault();
 
             return View(selectedowner);
@@ -129,11 +130,11 @@ namespace OffRoad.Controllers
         {
 
 
-            Debug.WriteLine("Value of OwnerFname " + OwnerFname +
-                            "Value of OwnerLname " + OwnerLname +
-                            "Value of OwnerNickName " + OwnerNickName +
-                            "Value of OwnerLocation " + OwnerLocation);
-
+           //Debug.WriteLine("Value of OwnerFname " + OwnerFname +
+            //                "Value of OwnerLname " + OwnerLname +
+            //                "Value of OwnerNickName " + OwnerNickName +
+            //                "Value of OwnerLocation " + OwnerLocation);
+            // updates data 
             string query = "update Owners SET  OwnerFname=@OwnerFname, OwnerLname=@OwnerLname, OwnerNickName=@OwnerNickName, OwnerLocation=@OwnerLocation where OwnerID=@id";
 
 
@@ -152,50 +153,39 @@ namespace OffRoad.Controllers
 
         public ActionResult ConfirmDelete(int id)
         {
+            // retrieves data form database for specific owner(given the id), and populates the form with info
             string query = "Select * from Owners where OwnerID = @id";
             SqlParameter sqlparam = new SqlParameter("@id", id);
-
-
             Owner selectedowner = db.Owners.SqlQuery(query, sqlparam).FirstOrDefault();
-
-
             return View(selectedowner);
 
         }
         public ActionResult Delete(int id)
         {
-
+            //Deletes the owner form the database when id is passed from confirmDelete view
             string query = "delete from Owners where OwnerID=@id";
             SqlParameter sqlparam = new SqlParameter("@id", id);
-
-
             db.Database.ExecuteSqlCommand(query, sqlparam);
             return RedirectToAction("List");
         }
 
         public ActionResult Show(int id)
         {
-
-
            // string query = "Select * from Owners where OwnerID = @id";
            // SqlParameter sqlparam = new SqlParameter("@id", id);
-
-
-            //Owner selectedowner = db.Owners.SqlQuery(query, sqlparam).FirstOrDefault();
-
-
-            //return View(selectedowner);
+           //Owner selectedowner = db.Owners.SqlQuery(query, sqlparam).FirstOrDefault();
+           //return View(selectedowner);
            
-            
+            //populates owner info from database
             string main_query = "select * from Owners where OwnerID = @id";
             var pk_parameter = new SqlParameter("@id", id);
             Owner Owner = db.Owners.SqlQuery(main_query, pk_parameter).FirstOrDefault();
 
-           
+            //populates vehicles associated with the owner
             string aside_query = "select * from Vehicles inner join VehicleOwners on Vehicles.VehicleID = VehicleOwners.Vehicle_VehicleID where VehicleOwners.Owner_OwnerID=@id";
             var fk_parameter = new SqlParameter("@id", id);
             List<Vehicle> OwnedVehicles = db.Vehicles.SqlQuery(aside_query, fk_parameter).ToList();
-
+            //shows all available vehicles to populate drop down options 
             string all_vehicles_query = "select * from Vehicles";
             List<Vehicle> AllVehicles = db.Vehicles.SqlQuery(all_vehicles_query).ToList();
                        
@@ -205,7 +195,6 @@ namespace OffRoad.Controllers
             viewmodel.all_vehicles = AllVehicles;
 
             return View(viewmodel);
-
             
         }
    
